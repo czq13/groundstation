@@ -143,7 +143,7 @@ private:
         }
     } _downloadState;
 
-    static const int _ackTimerTimeoutMsecs  = 1000;
+    static const int _ackTimerTimeoutMsecs  = 4000;
     static const int _ackTimerMaxRetries    = 6;
     static const int _maxRetry              = 5;
 };

@@ -1215,7 +1215,7 @@ private:
     QTimer                          _mavCommandAckTimer;
     int                             _mavCommandRetryCount;
     static const int                _mavCommandMaxRetryCount =              3;
-    static const int                _mavCommandAckTimeoutMSecs =            3000;
+    static const int                _mavCommandAckTimeoutMSecs =            10000;
     static const int                _mavCommandAckTimeoutMSecsHighLatency = 120000;
 
     void _sendMavCommandWorker(bool commandInt, bool requestMessage, bool showError, MavCmdResultHandler resultHandler, void* resultHandlerData, int compId, MAV_CMD command, MAV_FRAME frame, float param1, float param2, float param3, float param4, float param5, float param6, float param7);

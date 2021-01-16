@@ -9,6 +9,7 @@
 
 #include "PX4FirmwarePluginFactory.h"
 #include "PX4/PX4FirmwarePlugin.h"
+#include "PX4/thufirmwareplugin.h"
 
 PX4FirmwarePluginFactory PX4FirmwarePluginFactory;
 
@@ -22,6 +23,7 @@ QList<QGCMAVLink::FirmwareClass_t> PX4FirmwarePluginFactory::supportedFirmwareCl
 {
     QList<QGCMAVLink::FirmwareClass_t> list;
     list.append(QGCMAVLink::FirmwareClassPX4);
+    list.append(21);
     return list;
 }
 
@@ -32,6 +34,11 @@ FirmwarePlugin* PX4FirmwarePluginFactory::firmwarePluginForAutopilot(MAV_AUTOPIL
             _pluginInstance = new PX4FirmwarePlugin();
         }
         return _pluginInstance;
+    }
+    if (autopilotType == 21) {
+        if (!_thupluginInstance)
+            _thupluginInstance = new THUFirmwarePlugin();
+        return _thupluginInstance;
     }
     return nullptr;
 }

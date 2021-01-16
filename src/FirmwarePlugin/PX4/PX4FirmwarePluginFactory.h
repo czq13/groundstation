@@ -12,6 +12,7 @@
 #include "FirmwarePlugin.h"
 
 class PX4FirmwarePlugin;
+class THUFirmwarePlugin;
 
 class PX4FirmwarePluginFactory : public FirmwarePluginFactory
 {
@@ -25,4 +26,5 @@ public:
 
 private:
     PX4FirmwarePlugin*  _pluginInstance;
+    THUFirmwarePlugin* _thupluginInstance;
 };

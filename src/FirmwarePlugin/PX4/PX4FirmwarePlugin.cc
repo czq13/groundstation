@@ -38,7 +38,7 @@ PX4FirmwarePluginInstanceData::PX4FirmwarePluginInstanceData(QObject* parent)
 }
 
 PX4FirmwarePlugin::PX4FirmwarePlugin()
-    : _manualFlightMode     (tr("Manual"))
+    : _manualFlightMode     (tr("Manual:Try to see how long it is"))
     , _acroFlightMode       (tr("Acro"))
     , _stabilizedFlightMode (tr("Stabilized"))
     , _rattitudeFlightMode  (tr("Rattitude"))

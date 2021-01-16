@@ -40,6 +40,7 @@ QGC_LOGGING_CATEGORY(QGCTileCacheLog, "QGCTileCacheLog")
 
 #define LONG_TIMEOUT        5
 #define SHORT_TIMEOUT       2
+# pragma warning (disable:4819)
 
 //-----------------------------------------------------------------------------
 QGCCacheWorker::QGCCacheWorker()

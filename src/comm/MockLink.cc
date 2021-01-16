@@ -361,9 +361,9 @@ void MockLink::_sendSysStatus(void)
                 _vehicleComponentId,
                 static_cast<uint8_t>(_mavlinkChannel),
                 &msg,
-                0,          // onboard_control_sensors_present
-                0,          // onboard_control_sensors_enabled
-                0,          // onboard_control_sensors_health
+                393263,          // onboard_control_sensors_present
+                393263,          // onboard_control_sensors_enabled
+                393263,          // onboard_control_sensors_health
                 250,        // load
                 4200 * 4,   // voltage_battery
                 8000,       // current_battery
@@ -536,43 +536,54 @@ void MockLink::_handleIncomingMavlinkBytes(const uint8_t* bytes, int cBytes)
         if (!mavlink_parse_char(_mavlinkChannel, bytes[i], &msg, &comm)) {
             continue;
         }
-
+        if (msg.msgid != 0) qDebug() << "msgid=" << msg.msgid;
         if (_missionItemHandler.handleMessage(msg)) {
             continue;
         }
 
         switch (msg.msgid) {
         case MAVLINK_MSG_ID_HEARTBEAT:
+            //qDebug() << ",heartbeat\n";
             _handleHeartBeat(msg);
             break;
         case MAVLINK_MSG_ID_PARAM_REQUEST_LIST:
+            qDebug() << ",param_request_list\n";
             _handleParamRequestList(msg);
             break;
         case MAVLINK_MSG_ID_SET_MODE:
+            qDebug() << ",set_mode\n";
             _handleSetMode(msg);
             break;
         case MAVLINK_MSG_ID_PARAM_SET:
+            qDebug() << ",param_set\n";
             _handleParamSet(msg);
             break;
         case MAVLINK_MSG_ID_PARAM_REQUEST_READ:
+            qDebug() << ",param_request_read\n";
             _handleParamRequestRead(msg);
             break;
         case MAVLINK_MSG_ID_FILE_TRANSFER_PROTOCOL:
+            qDebug() << ",file_transfer_protocol\n";
             _handleFTP(msg);
             break;
         case MAVLINK_MSG_ID_COMMAND_LONG:
+            qDebug() << ",command_long\n";
             _handleCommandLong(msg);
             break;
         case MAVLINK_MSG_ID_MANUAL_CONTROL:
+            qDebug() << ",manual_control\n";
             _handleManualControl(msg);
             break;
         case MAVLINK_MSG_ID_LOG_REQUEST_LIST:
+            qDebug() << ",log_request_list\n";
             _handleLogRequestList(msg);
             break;
         case MAVLINK_MSG_ID_LOG_REQUEST_DATA:
+            qDebug() << ",log_request_data\n";
             _handleLogRequestData(msg);
             break;
         case MAVLINK_MSG_ID_PARAM_MAP_RC:
+            qDebug() << ",param_map_rc\n";
             _handleParamMapRC(msg);
             break;
         default:
@@ -982,7 +993,7 @@ void MockLink::_handleCommandLong(const mavlink_message_t& msg)
     uint8_t commandResult = MAV_RESULT_UNSUPPORTED;
 
     mavlink_msg_command_long_decode(&msg, &request);
-
+    qDebug() << "command=" << request.command << "\n";
     switch (request.command) {
     case MAV_CMD_COMPONENT_ARM_DISARM:
         if (request.param1 == 0.0f) {
@@ -1562,9 +1573,11 @@ bool MockLink::_handleRequestMessage(const mavlink_command_long_t& request, bool
     case MAVLINK_MSG_ID_COMPONENT_INFORMATION:
         switch (static_cast<int>(request.param2)) {
         case COMP_METADATA_TYPE_VERSION:
+            qDebug() << "comp_metadata_type_version";
             _sendVersionMetaData();
             return true;
         case COMP_METADATA_TYPE_PARAMETER:
+            qDebug() << "comp_metadata_type_parameter";
             _sendParameterMetaData();
             return true;
         }

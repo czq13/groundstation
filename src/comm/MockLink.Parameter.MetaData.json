@@ -17,6 +17,19 @@
       "maxValue": 5
     },
     {
+      "name": "CZQ_4_PARAM",
+      "type": "Float",
+      "group": "Airspeed Validator",
+      "category": "Standard",
+      "shortDesc": "parameter for manual xy deadzone",
+      "longDesc": "parameter for manual xy deadzone",
+      "units": "SD",
+      "default": 1,
+      "decimalPlaces": 3,
+      "minValue": -1,
+      "maxValue": 1
+    },
+    {
       "name": "ASPD_BETA_NOISE",
       "type": "Float",
       "group": "Airspeed Validator",

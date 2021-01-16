@@ -69,7 +69,7 @@ void QGCLoggingCategoryRegister::setFilterRulesFromSettings(const QString& comma
     }
     QString filterRules;
 
-    filterRules += "*Log.debug=false\n";
+    filterRules += "*Log.debug=true\n";
 
     // Set up filters defined in settings
     foreach (QString category, _registeredCategories) {

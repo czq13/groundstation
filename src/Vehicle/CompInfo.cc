@@ -27,6 +27,10 @@ void CompInfo::setMessage(const mavlink_message_t& message)
     available      = true;
     uidMetaData    = componentInformation.metadata_uid;
     uidTranslation = componentInformation.translation_uid;
-    uriMetaData    = componentInformation.metadata_uri;
+    //if (type == 1)
+    //    uriMetaData = QString("mavlinkftp://param~1.JSO");
+    //else
+        uriMetaData    = componentInformation.metadata_uri;
     uriTranslation = componentInformation.translation_uri;
+    //qDebug() << uriMetaData << endl;
 }
